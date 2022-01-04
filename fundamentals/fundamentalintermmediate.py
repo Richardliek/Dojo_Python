@@ -12,7 +12,7 @@ sports_directory = {
 z = [ {'x': 10, 'y': 20} ]
 
 
-# TODO: Change the value 10 in x to 15. Once you're done, x should now be [ [5,2,3], [15,8,9] ].
+# TO DO: Change the value 10 in x to 15. Once you're done, x should now be [ [5,2,3], [15,8,9] ].
 x[1][0] = 15
 print(x)
 # TODO: Change the last_name of the first student from 'Jordan' to 'Bryant'

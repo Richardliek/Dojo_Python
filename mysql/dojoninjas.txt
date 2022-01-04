@@ -1,0 +1,33 @@
+-- create 3 new dojos
+INSERT INTO dojos (name)
+VALUES ("Boston"),("Portland"),("Portsmouth");
+
+-- delete 3 dojos
+Set SQL_SAFE_UPDATES = 0;
+DELETE FROM dojos;
+
+-- create 3 more dojos
+INSERT INTO dojos (name)
+VALUES ("Boston"),("Portland"),("Portsmouth");
+
+-- create 3 ninjas
+INSERT INTO ninjas (first_name, last_name, age, dojo_id)
+VALUES ("Richie","Liek", 31, 10), ("Joanna", "Smith", 29, 10), ("Brenton", "LaCombe", 32, 10),
+   	("Pierome", "sar", 31, 11), ("Graham", "Brown", 31, 11), ("Jared", "plante", 32, 11),
+	("Danny", "Dillon", 30, 12), ("Jared", "Slingerland", 29, 12), ("Josh", "Brookes", 32, 12); 
+
+-- retrieve all ninjas from first dojo
+SELECT * FROM dojos
+LEFT JOIN ninjas ON dojos.id = ninjas.dojo_id
+WHERE dojos.id = 10;
+
+-- retrieve all ninjas from last dojo
+
+SELECT * FROM dojos
+LEFT JOIN ninjas ON dojos.id = ninjas.dojo_id
+WHERE dojos.id = 12;
+
+
+-- retrieve last ninjas dojo
+SELECT * FROM dojos
+WHERE dojos.id= (SELECT dojo_id FROM ninjas ORDER BY dojo_id DESC LIMIT 1);

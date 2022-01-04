@@ -18,7 +18,8 @@ class BankAccount:
         return self
     
     def display_account_info(self):
-        return f"{self.balance}"
+        print(f"Balance: {self.balance}")
+        return self
 
     def yeild_interest(self):
         if self.balance > 0:
@@ -31,30 +32,10 @@ class BankAccount:
             account.display_account_info()
 
 
-class User:
+savings = BankAccount(.05,1000)
+checking = BankAccount(.02,5000)
 
-    def __init__(self, name):
-        self.name = name
-        self.account = {
-            "checking" : BankAccount(.02,5005),
-            "savings" : BankAccount(.05,25000)
-        }
-        
+savings.deposit(10).deposit(20).deposit(40).withdraw(600).yeild_interest().display_account_info()
+checking.deposit(100).deposit(200).deposit(400).withdraw(60).yeild_interest().display_account_info()
 
-    def display_user_balance(self):
-        print(f"User: {self.name}, Checking Balance: {self.account['checking'].display_account_info()}")
-        print(f"User: {self.name}, Savings Balance: {self.account['savings'].display_account_info()}")
-        return self
-
-    def transfer_money(self,amount,user):
-        self.amount -= amount
-        user.amount += amount
-        self.display_user_balance()
-        user.display_user_balance()
-        return self
-
-
-Richie = User("Richie")
-
-Richie.account['checking'].deposit(100)
-Richie.display_user_balance()
+BankAccount.print_all_accounts()
