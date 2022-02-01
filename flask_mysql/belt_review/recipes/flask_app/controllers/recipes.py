@@ -28,6 +28,7 @@ def create_recipe():
         "date_made": request.form["date_made"],
         "user_id": session["user_id"]
     }
+    print(data)
     Recipe.save(data)
     return redirect('/dashboard')
 

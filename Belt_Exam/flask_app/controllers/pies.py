@@ -22,12 +22,11 @@ def create_recipe():
         return redirect('/new/recipe')
     data = {
         "name": request.form["name"],
-        "description": request.form["description"],
-        "instructions": request.form["instructions"],
-        "under30": int(request.form["under30"]),
-        "date_made": request.form["date_made"],
+        "filling": request.form["filling"],
+        "crust": request.form["crust"],
         "user_id": session["user_id"]
     }
+    print(data)
     Recipe.save(data)
     return redirect('/dashboard')
 

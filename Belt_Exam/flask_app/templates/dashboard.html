@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="d-flex justify-content-end align-items-center">
+        <div class="d-flex col-2 justify-content-around">
+            <a href="/pies" class="btn btn-primary">Pie Derby</a>
+            <a href="/logout" class="btn btn-info">Logout</a>
+            
+        </div>
+        
+    </nav>
+    <div class="d-flex justify-content-around col-6 mx-auto">
+        <h2 class="text-start">PyPies by {{user.first_name}}</h2>
+        <h2 class="text-start">Add New PyPie</h2>
+    </div>
+
+    <div class="col-4 mx-auto d-flex justify-content-between">
+        
+        <table class="table table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for recipe in recipes %}
+                    <tr>
+                        <td>{{recipe.name}}</td>
+                        <td>
+                            <a href="/recipe/{{recipe.id}}">View Instructions</a>
+                            {% if recipe.user_id == session.user_id %}
+                            <a href="/edit/recipe/{{recipe.id}}">Edit</a>
+                            <a href="/destroy/recipe/{{recipe.id}}">Delete</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <form action="/dashboard" method="post" class="col-4 p-4 text-dark">
+            {% with messages = get_flashed_messages(category_filter=['register']) %}
+                {% if messages %}
+                <div class="alert alert-danger" role="alert">
+                    <strong>UH OH</strong>
+                        {% for message in messages %}
+                        <p>{{message}}</p>
+                        {% endfor %}
+                </div>
+                {% endif %}
+            {% endwith %}
+            <div class="form-group">
+                <label for="first_name">Name:</label>
+                <input type="text" name="name" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="last_name">Filling:</label>
+                <input type="text" name="filling" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="email">Crust:</label>
+                <input type="text" name="crust" class="form-control">
+            </div>
+            <input type="submit" value="Add pie" class="btn btn-primary">
+        </form>
+    </div>
+</body>
+</html>
