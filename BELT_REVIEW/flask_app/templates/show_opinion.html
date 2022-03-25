@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Opinion</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="border-bottom mx-auto">
+        <nav class="d-flex justify-content-between align-items-center my-2 ml-2">
+            <h1 class="text-center">Show Opinion</h1>
+            <div class="d-flex col-3 align-items-center">
+                <a href="/logout" class="btn btn-info m-2">Logout</a>
+                <a href="/dashboard" class="d-flex btn btn-primary">Dashboard</a>
+            </div>
+        </nav>
+        {% with messages = get_flashed_messages() %}     <!-- declare a variable called messages -->
+        {% if messages %}                            <!-- check if there are any messages -->
+            {% for message in messages %}            <!-- loop through the messages -->
+                <p>{{message}}</p>                   <!-- display each message in a paragraph tag -->
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <p>Movie Title: {{opinion.movie_title}}</p>
+    <p>Opinion By: {{opinion.user.first_name}} {{opinion.user.last_name}}</p>
+    <p>Experience: {{opinion.experience}}</p>
+    <p>Date Watched: {{opinion.date_watched}}</p>
+    <p>Rating: {{opinion.rating}}</p>
+</body>
+</html>

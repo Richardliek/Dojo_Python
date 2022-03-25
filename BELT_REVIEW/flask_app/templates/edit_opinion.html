@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Opinion</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="border-bottom mx-auto">
+        <nav class="d-flex justify-content-between align-items-center my-2 ml-2">
+            <h1 class="text-center">Edit Opinion</h1>
+            <div class="d-flex col-3 align-items-center">
+                <a href="/logout" class="btn btn-info m-2">Logout</a>
+                <a href="/dashboard" class="d-flex btn btn-primary">Dashboard</a>
+            </div>
+
+        </nav>
+        {% with messages = get_flashed_messages() %}     <!-- declare a variable called messages -->
+        {% if messages %}                            <!-- check if there are any messages -->
+            {% for message in messages %}            <!-- loop through the messages -->
+                <p>{{message}}</p>                   <!-- display each message in a paragraph tag -->
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <form action="/opinions/{{opinion.id}}/update" method="POST">
+            <input name="id" type="hidden" value="{{opinion.id}}">
+            <p>Movie Title: <input name="movie_title" type="text" value="{{opinion.movie_title}}"></p>
+            <p>experience: <textarea name="experience" cols="16" rows="10">{{opinion.experience}}</textarea></p>
+            <p>Date Watched: <input name="date_watched" type="date"></p>
+            <p>Rating: 
+                <select name="rating" type="number">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </p>
+            <button class="d-flex btn btn-primary">Update {{opinion.movie_title}}!</button>
+        </form>
+</body>
+</html>

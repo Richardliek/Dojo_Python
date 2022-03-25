@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Edit New Opinion</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='{{url_for("static", filename="css/style.css")}}'>
+</head>
+<body>
+    div class="border-bottom mx-auto">
+        <nav class="d-flex justify-content-between align-items-center my-2 ml-2">
+            <h1 class="text-center">Delete Opinion?</h1>
+            <div class="d-flex col-3 align-items-center">
+                <a href="/logout" class="btn btn-info m-2">Logout</a>
+                <a href="/opinions/add" class="d-flex btn btn-primary">New Opinion</a>
+            </div>
+        </nav>
+    </div>
+    <h1>Are you sure you want to delete {{opinion.movie_title}} Movie Opinion?</h1>
+    <form action="/opinions/{{opinion.id}}/destroy" method="post">
+        <input name="id" type="hidden" value="{{opinion.id}}">
+        <button type="submit">Delete This Opinion</button>
+    </form>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/logout">Logout</a>
+
+</body>
+</html> 
