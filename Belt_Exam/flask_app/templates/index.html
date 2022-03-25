@@ -10,11 +10,11 @@
 <body>
     <div class="d-flex justify-content-around">
         <form action="/register" method="post" class="col-4 p-4 bg-info text-light">
-            <h2 class="text-primary">Register</h2>
+            <h2 class="text-light">Register</h2>
             {% with messages = get_flashed_messages(category_filter=['register']) %}
                 {% if messages %}
                 <div class="alert alert-danger" role="alert">
-                    <strong>Flash AHHHHHHH!!!!</strong>
+                    <strong>OH NO!</strong>
                         {% for message in messages %}
                         <p>{{message}}</p>
                         {% endfor %}
@@ -44,7 +44,7 @@
             <input type="submit" value="Register" class="btn btn-primary">
         </form>
         <form action="/login" method="post" class="col-4 p-4 bg-info text-light">
-            <h2 class="text-dark">Login</h2>
+            <h2 class="text-light">Login</h2>
             {% with messages = get_flashed_messages(category_filter=['login']) %}
                 {% if messages %}
                 <div class="alert alert-danger" role="alert">
@@ -64,7 +64,7 @@
                 <input type="password" name="password" class="form-control">
             </div>
             
-            <input type="submit" value="Login" class="btn btn-dark">
+            <input type="submit" value="Login" class="btn btn-primary">
         </form>
     </div>
 </body>

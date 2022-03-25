@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="d-flex justify-content-between align-items-center col-12">
+        <h1 class="text-center">Sasquatch Websighting</h1> 
+        <div>
+            <h2>{{user.first_name}} {{user.last_name}}</h2>
+            <a href="/dashboard" class="btn btn-primary">Dashboard</a>
+            <a href="/logout" class="btn btn-info">Logout</a>
+        </div>    
+    </nav>
+    {% with messages = get_flashed_messages() %}     <!-- declare a variable called messages -->
+    {% if messages %}                            <!-- check if there are any messages -->
+        {% for message in messages %}            <!-- loop through the messages -->
+            <p>{{message}}</p>                   <!-- display each message in a paragraph tag -->
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+    <h2 class="align-items-center">Edit this sighting</h2>
+    <form action="/sightings/{{sighting.id}}/update" method="POST" class="card-body my-5 d-flex justify-content-between col-6 mx-auto">
+        <input name="id" type="hidden" value="{{sighting.id}}">
+        <div class="col-4">
+            <div class="form-group">
+                <h3 for="location">Location:</h3>
+                <textarea type="text" name="location" class="form-control">{{sighting.location}}</textarea>
+            </div>
+            <div class="form-group">
+                <h3 for="what_happened">What Happened:</h3>
+                <textarea name="what_happened"  cols="30" rows="5" class="form-control">{{sighting.what_happened}}</textarea>
+            </div>
+            <button class="d-flex btn btn-primary">Report</button>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <h3 for="date_found">Date of sighting:</h3>
+                <input type="date" name="date_found" class="form-control">
+            </div>
+            <div class="form-group text-bold">
+                <h3 for="num_sasquatch">Number of Sasquatches:</h3>
+                <p><input type="number" name="num_sasquatch"></p>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
