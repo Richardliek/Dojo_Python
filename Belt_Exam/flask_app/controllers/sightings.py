@@ -77,3 +77,21 @@ def destroy_sighting(id):
     }
     Sighting.destroy(data)
     return redirect('/dashboard')
+
+# @app.route("/opinions/<int:id>/like")
+# def like_opinion(id):
+#     data = {
+#         'user_id': session['user_id'],
+#         'opinion_id': id
+#     }
+#     Opinion.like(data)
+#     return redirect("/dashboard")
+
+# @app.route("/opinions/<int:id>/dislike")
+# def dislike_opinion(id):
+#     data = {
+#         'user_id': session['user_id'],
+#         'opinion_id': id
+#     }
+#     Opinion.dislike(data)
+#     return redirect("/dashboard")
