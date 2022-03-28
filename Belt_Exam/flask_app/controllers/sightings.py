@@ -35,6 +35,8 @@ def create_sightings():
         'user_id' : session['user_id']
     }
     Sighting.create_sighting(sighting_data)
+    if not Sighting.validate_sightings(request.form):
+        return redirect('/sightings/add')
     return redirect('/dashboard')
 
 @app.route('/sightings/<int:id>')

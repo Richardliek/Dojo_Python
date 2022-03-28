@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thoughts</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="border-bottom mx-auto">
+        <nav class="d-flex justify-content-between align-items-center my-2 ml-2">
+            <h1 class="text-center">Welcome {{user.first_name}} {{user.last_name}}!</h1>
+            <div class="d-flex col-3 align-items-center">
+                <a href="/logout" class="btn btn-info m-2">Logout</a>
+                <input type="submit" value="Add Dojo" class="d-flex btn btn-primary">
+            </div>
+        </nav>
+        <form action="/thoughts/add" method="POST">
+            <h2 class="text-start">Thoughts:</h2>
+            <div class="form-group">
+                <input type="text" name="thought" class="form-control col-8" placeholder="Insert thought here...">
+                <button type="submit" class="btn btn-primary">Add thought</button>
+            </div>
+        </form>
+        <table class="table table-hover">
+            <tbody>
+                {% for thought in thoughts %}
+                    <tr>
+                        <td>{{thought.thoughts}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+    
+    <!-- <div>
+        <div class="d-flex col-4 align-items-center">
+            <a href=""></a>
+            <div class="card-body">
+                {% for r in all_thoughts%}
+                <p class="card-text">
+                    {{r.Thoughts}}
+                </p>
+                {% endfor %}
+            </div>
+            <a href="/destroy/dashboard">Delete</a>
+        </div>
+        <div class="d-flex align-items-center">
+            <a href="/like" class="btn btn-primary">Like</a>
+            <a href="/unlike" class="btn btn-danger">Unlike</a>
+            <p class="ml-2">{{session['like']}}Like(s)</p>
+        </div>
+    </div> -->
+</body>
+</html>

@@ -9,7 +9,7 @@
 </head>
 <body>
     <nav class="d-flex justify-content-between align-items-center col-12">
-        <h1 class="text-center">Sausquatch Websighting</h1> 
+        <h1 class="text-center">Sasquatch Websighting</h1> 
         <div>
             <h2>{{user.first_name}} {{user.last_name}}</h2>
             <a href="/sightings/add" class="btn btn-primary">Report a Sighting</a>
@@ -31,8 +31,8 @@
                 {% for sighting in sightings %}
                 <tr>
                     <td>{{sighting.location}}</td>
-                    <td>{{sighting.date_found.strftime('%B %d %Y')}}</td>
-                    <td>{{sighting.user.first_name}}</td> <!-- {{sighting.user.first_name}} {{sighting.user.last_name}} ** If classmethod were to work ** /--> 
+                    <td>{{sighting.date_found.strftime('%B %d, %Y')}}</td>
+                    <td>{{sighting.user.first_name}} {{sighting.user.last_name}}</td> <!-- {{sighting.user.first_name}} {{sighting.user.last_name}} ** If classmethod were to work ** /--> 
                     <td>
                         <a href="/sightings/{{sighting.id}}" class="btn btn-success">View</a>
                         {% if session.user_id == sighting.user_id %}

@@ -1,10 +1,10 @@
 from flask_app.config.mysqlconnection import connectToMySQL
-import re  
+import re	
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 from flask import flash
 
 class User:
-    db_name = "recipes"
+    db_name = "thoughts_schema"
     def __init__(self,data):
         self.id = data['id']
         self.first_name = data['first_name']
@@ -51,7 +51,7 @@ class User:
             flash("Email already taken.","register")
             is_valid=False
         if not EMAIL_REGEX.match(user['email']):
-            flash("Invalid Email!!!","register")
+            flash("Invalid Email!","register")
             is_valid=False
         if len(user['first_name']) < 3:
             flash("First name must be at least 3 characters","register")

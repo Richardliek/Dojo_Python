@@ -27,52 +27,21 @@ class Sighting:
         query= "SELECT * FROM sightings JOIN users ON user_id = users.id;"
         results = connectToMySQL(cls.db_name).query_db(query)
         sightings = []
-        row = results[0]
-        sighting = cls(row)
-        user_data = {
-            'id': row['users.id'],
-            'first_name': row['first_name'],
-            'last_name': row['last_name'],
-            'email': row['email'],
-            'password': row['password'],
-            'created_at': row['users.created_at'],
-            'updated_at': row['users.updated_at'],
-        }
-        user = User(user_data)
-        sighting.user = user
-        sightings.append(sighting)
+        for row in results:
+            sighting = cls(row)
+            user_data = {
+                'id': row['users.id'],
+                'first_name': row['first_name'],
+                'last_name': row['last_name'],
+                'email': row['email'],
+                'password': row['password'],
+                'created_at': row['users.created_at'],
+                'updated_at': row['users.updated_at'],
+            }
+            user = User(user_data)
+            sighting.user = user
+            sightings.append(sighting)
         return sightings
-
-## classmethod below does not work to display user names -- would only display one 'sighting' in dashboard
-
-    # @classmethod
-    # def get_all(cls):
-    #     query= "SELECT * FROM sightings JOIN users ON user_id = users.id;"
-    #     results = connectToMySQL(cls.db_name).query_db(query)
-    #     sightings = []
-    #     for row in results:
-    #         sighting = cls(row)
-    #         user_data = {
-    #             'id': row['users.id'],
-    #             'first_name': row['first_name'],
-    #             'last_name': row['last_name'],
-    #             'email': row['email'],
-    #             'password': row['password'],
-    #             'created_at': row['users.created_at'],
-    #             'updated_at': row['users.updated_at']
-    #         }
-    #     user = User(user_data)
-    #     sightings.user = user
-    #     sightings.append(sighting)
-    #     Sighting.save(user_data)
-    #     return sightings
-
-### END
-
-    @classmethod
-    def save(cls,data):
-        query = "INSERT INTO sightings (location, what_happened, num_sasquatch, date_found, user_id) VALUES (%(location)s,%(what_happened)s,%(num_sasquatch)s,%(date_found)s,%(user_id)s);"
-        return connectToMySQL(cls.db_name).query_db(query, data)
 
     @classmethod
     def get_one(cls, data):
