@@ -1,0 +1,3 @@
+This Web application demonstrates the use of a Full Stack Python application. This shows the use of Flask, Python, MySQL, CRUD, MVC, RESTful routing. 
+
+This is an Exam "Sasquatch Sightings" was to show how users can post a Sasquatch sighting, while being able to route to different pages. This application has a login ang registration page, where users are able to create a username, and Validation is demonstrated here as well. While Users are able to report a sighting, they are able to see other sightings from multiple users in the 'dashboard' page. Sesssion is used for being able to edit and delete a sighting.
